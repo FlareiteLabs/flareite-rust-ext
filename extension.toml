@@ -1,14 +1,14 @@
 # Rust: highlighting from a Tree-sitter grammar compiled to WebAssembly, and
-# rust-analyzer. No code. See docs/extensions.md#languages.
-id = "ferrite.rust"
+# rust-analyzer. No code. See Flareite's docs/extensions.md#languages.
+id = "flareite.rust"
 name = "Rust"
 version = "0.1.0"
 description = "Rust highlighting, and rust-analyzer for diagnostics, hover, definitions, and completion."
-author = "Ferrite"
+author = "Flareite"
 api_version = "1"
 
 [engines]
-ferrite = ">=0.1.0"
+flareite = ">=0.1.0"
 
 [permissions]
 language_servers = true
