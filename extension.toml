@@ -2,7 +2,7 @@
 # rust-analyzer. No code. See Flareite's docs/extensions.md#languages.
 id = "flareite.rust"
 name = "Rust"
-version = "0.1.0"
+version = "0.2.0"
 description = "Rust highlighting, and rust-analyzer for diagnostics, hover, definitions, and completion."
 author = "Flareite"
 api_version = "1"
@@ -23,6 +23,29 @@ folds = "queries/folds.scm"
 # For Toggle Line Comment (Ctrl+/).
 line_comment = "//"
 block_comment = ["/*", "*/"]
+# Brackets and quotes typed in pairs, as in VS Code's language configuration.
+brackets = [["{", "}"], ["[", "]"], ["(", ")"]]
+auto_closing_pairs = [
+  [
+    "{",
+    "}",
+  ],
+  [
+    "[",
+    "]",
+  ],
+  [
+    "(",
+    ")",
+  ],
+  { open = '"', close = '"', not_in = [
+    "string",
+  ] },
+  { open = "/*", close = " */", not_in = [
+    "string",
+  ] },
+]
+surrounding_pairs = [["{", "}"], ["[", "]"], ["(", ")"], ['"', '"'], ["<", ">"]]
 
 # `rustup component add rust-analyzer`
 [[language_servers]]
