@@ -1,17 +1,37 @@
 # Rust: highlighting from a Tree-sitter grammar compiled to WebAssembly, and
-# rust-analyzer. No code. See Flareite's docs/extensions.md#languages.
+# rust-analyzer, which Flareite runs. The code asks Cargo which workspace
+# each opened Rust file is in, and gives rust-analyzer the ones it wouldn't
+# load from the folder (packages its workspace excludes) as more workspace
+# folders. See Flareite's docs/extensions.md#languages.
 id = "flareite.rust"
 name = "Rust"
-version = "1.0.0"
+version = "1.1.0"
 description = "Rust highlighting, and rust-analyzer for diagnostics, hover, definitions, and completion."
 author = "Flareite"
 api_version = "2"
+entrypoint = "target/wasm32-unknown-unknown/release/rust.wasm"
+activation = ["on-language:rust"]
+# Looks at the folder again when another opens, or the user trusts it.
+events = ["folder-changed"]
 
 [engines]
 flareite = ">=0.1.0"
 
+# language_servers: rust-analyzer. documents_read: hearing which Rust files
+# open. processes: asking Cargo which workspace they're in.
 [permissions]
 language_servers = true
+documents_read = true
+processes = true
+
+[build]
+command = "cargo"
+args = ["build", "--release"]
+watch = ["src", "Cargo.toml"]
+
+# `cargo locate-project --workspace`, which only reads manifests.
+[[programs]]
+name = "cargo"
 
 [[languages]]
 id = "rust"
